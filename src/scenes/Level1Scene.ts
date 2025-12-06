@@ -5,6 +5,7 @@ import { GameHUD } from '../ui/GameHUD';
 import { UpgradePanel, UpgradePool } from '../ui/UpgradePanel';
 import type { UpgradeOption } from '../ui/UpgradePanel';
 import { EquipmentManager } from '../ui/EquipmentPanel';
+import { ShopPanel } from '../ui/ShopPanel';
 import { generateRandomEquipment } from '../data/Equipment';
 import type { Equipment } from '../data/Equipment';
 
@@ -88,6 +89,9 @@ export class Level1Scene extends Phaser.Scene {
   // 门/传送点
   private exitDoor?: ExitDoor;
   
+  // 商店
+  private shopPanel?: ShopPanel;
+  
   // 角色等级系统
   private playerLevel = 1;
   private playerExp = 0;
@@ -135,6 +139,20 @@ export class Level1Scene extends Phaser.Scene {
     this.upgradePool = new UpgradePool();
     this.equipmentManager = new EquipmentManager(this);
     
+    // 初始化商店
+    this.shopPanel = new ShopPanel(this);
+    this.shopPanel.setCallbacks({
+      onGoldChange: (delta: number) => {
+        this.gold += delta;
+        this.hud.setGold(this.gold);
+        this.savePlayerData();
+      },
+      getGold: () => this.gold,
+      getInventory: () => this.equipmentManager.getInventory(),
+      removeFromInventory: (equipment) => this.equipmentManager.removeFromInventory(equipment),
+      addToInventory: (equipment) => this.equipmentManager.addToInventory(equipment)
+    });
+    
     // 更新HUD显示（应用已加载的数据）
     this.hud.setLevel(this.playerLevel, this.playerExp, this.expToNextLevel);
     this.hud.setGold(this.gold);
@@ -145,8 +163,19 @@ export class Level1Scene extends Phaser.Scene {
       this.toggleEquipmentPanel();
     });
     
+    // 监听商店界面打开事件
+    this.events.on('openShop', () => {
+      this.toggleShopPanel();
+    });
+    
     // 装备界面快捷键 (E键)
     this.equipmentKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    
+    // 商店快捷键 (B键)
+    const shopKey = this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    shopKey.on('down', () => {
+      this.toggleShopPanel();
+    });
     
     // 开始第一个房间
     this.startRoom();
@@ -1840,6 +1869,38 @@ export class Level1Scene extends Phaser.Scene {
         this.physics.world.resume();
         // 更新装备属性
         this.applyEquipmentStats();
+        // 重启自动攻击
+        this.startAutoAttack();
+      });
+    }
+  }
+
+  // ========== 商店界面切换 ==========
+
+  private toggleShopPanel(): void {
+    if (!this.shopPanel) return;
+    
+    if (this.shopPanel.isPanelOpen()) {
+      this.shopPanel.closePanel();
+      this.isPaused = false;
+      this.physics.world.resume();
+      // 重启自动攻击
+      if (!this.autoAttackTimer) {
+        this.startAutoAttack();
+      }
+    } else {
+      this.isPaused = true;
+      this.physics.world.pause();
+      // 停止自动攻击
+      if (this.autoAttackTimer) {
+        this.autoAttackTimer.destroy();
+        this.autoAttackTimer = undefined;
+      }
+      // 刷新商店商品
+      this.shopPanel.refreshShop(this.currentRoom);
+      this.shopPanel.openPanel(() => {
+        this.isPaused = false;
+        this.physics.world.resume();
         // 重启自动攻击
         this.startAutoAttack();
       });

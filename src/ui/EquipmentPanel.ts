@@ -320,6 +320,18 @@ export class EquipmentManager {
   }
 
   /**
+   * 从背包移除装备
+   */
+  removeFromInventory(equipment: Equipment): boolean {
+    const index = this.inventory.indexOf(equipment);
+    if (index > -1) {
+      this.inventory.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * 获取总属性加成（转换为游戏用格式）
    */
   getTotalStats(): { attackBonus: number; healthBonus: number; speedBonus: number; critBonus: number } {

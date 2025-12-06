@@ -137,6 +137,25 @@ export class GameHUD {
       color: '#888888'
     }).setOrigin(0.5);
     this.container.add(equipTooltip);
+    
+    // ===== 商店提示 =====
+    const shopHint = this.scene.add.text(CANVAS_WIDTH - 80, 35, '🏪', {
+      fontSize: '20px'
+    }).setOrigin(0.5).setInteractive({ useHandCursor: true });
+    shopHint.on('pointerdown', () => {
+      // 触发商店界面打开事件
+      this.scene.events.emit('openShop');
+    });
+    this.container.add(shopHint);
+    
+    // 商店提示悬浮
+    const shopTooltip = this.scene.add.text(CANVAS_WIDTH - 80, 55, '按B打开', {
+      fontFamily: 'Arial',
+      fontSize: '10px',
+      color: '#888888'
+    }).setOrigin(0.5);
+    this.container.add(shopTooltip);
+    
     this.container.add(this.goldText);
 
     // ===== 连击显示 (中央) =====
