@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 64" width="384" height="64">
+  <defs>
+    <!-- 通用样式 -->
+    <style>
+      .outline { fill: none; stroke: #000; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+      .sponge { fill: #FFF000; stroke: #000; stroke-width: 1.5; }
+      .pants { fill: #8B4513; stroke: #000; stroke-width: 1.5; }
+      .shirt { fill: #FFF; stroke: #000; stroke-width: 1.5; }
+      .tie { fill: #F00; stroke: #000; stroke-width: 1; }
+      .hole { fill: #BDB76B; opacity: 0.5; }
+      .eye-white { fill: #FFF; stroke: #000; stroke-width: 1; }
+      .eye-blue { fill: #87CEEB; }
+      .pupil { fill: #000; }
+      .tooth { fill: #FFF; stroke: #000; stroke-width: 1; }
+      .limb { fill: #FFF000; stroke: #000; stroke-width: 1.2; }
+      .sock { fill: #FFF; stroke: #000; stroke-width: 1; }
+      .shoe { fill: #000; }
+      .cheek { fill: #FF6347; opacity: 0.3; }
+    </style>
+
+    <!-- 基础身体组件 -->
+    <g id="base-body">
+      <!-- 裤子 -->
+      <path class="pants" d="M12 42 h40 v10 h-40 z"/>
+      <path class="outline" d="M12 46 h40" style="stroke-dasharray: 4,2; opacity: 0.5"/>
+      <!-- 衬衫 -->
+      <path class="shirt" d="M12 34 h40 v8 h-40 z"/>
+      <!-- 海绵主体 (波浪边) -->
+      <path class="sponge" d="M10 6 
+        c2 -2, 6 -2, 8 0 s6 2, 8 0 s6 -2, 8 0 s6 2, 8 0 s6 -2, 8 0
+        v28 
+        c-2 2, -2 6, 0 8
+        h-40
+        c-2 -2, -2 -6, 0 -8
+        z"/>
+      <!-- 孔洞 -->
+      <circle class="hole" cx="16" cy="12" r="2"/>
+      <circle class="hole" cx="44" cy="10" r="3"/>
+      <circle class="hole" cx="14" cy="28" r="1.5"/>
+      <circle class="hole" cx="46" cy="26" r="2"/>
+      <!-- 领带 -->
+      <path class="tie" d="M32 34 l-3 8 l3 3 l3 -3 l-3 -8"/>
+      <path class="shirt" d="M22 34 l10 4 l10 -4" style="fill:none"/>
+    </g>
+
+    <!-- 脸部: 正面开心 -->
+    <g id="face-happy">
+      <!-- 眼睛 -->
+      <circle class="eye-white" cx="24" cy="18" r="7"/>
+      <circle class="eye-white" cx="40" cy="18" r="7"/>
+      <circle class="eye-blue" cx="26" cy="18" r="3"/>
+      <circle class="eye-blue" cx="38" cy="18" r="3"/>
+      <circle class="pupil" cx="26" cy="18" r="1.5"/>
+      <circle class="pupil" cx="38" cy="18" r="1.5"/>
+      <!-- 睫毛 -->
+      <path class="outline" d="M24 11 v-3 M21 12 l-2 -2 M27 12 l2 -2" style="stroke-width:1"/>
+      <path class="outline" d="M40 11 v-3 M37 12 l-2 -2 M43 12 l2 -2" style="stroke-width:1"/>
+      <!-- 鼻子 -->
+      <path class="sponge" d="M30 20 q2 -4 4 0" style="stroke-width:1"/>
+      <!-- 嘴巴 -->
+      <path class="outline" d="M22 26 q10 8 20 0"/>
+      <!-- 牙齿 -->
+      <rect class="tooth" x="28" y="29" width="3" height="4"/>
+      <rect class="tooth" x="33" y="29" width="3" height="4"/>
+      <!-- 脸颊 -->
+      <circle class="cheek" cx="18" cy="24" r="3"/>
+      <circle class="cheek" cx="46" cy="24" r="3"/>
+      <path class="outline" d="M17 23 q1 -1 2 0 M45 23 q1 -1 2 0" style="stroke: #F00; stroke-width: 0.5"/>
+    </g>
+
+    <!-- 脸部: 侧面/斜视 -->
+    <g id="face-side">
+      <circle class="eye-white" cx="26" cy="18" r="7"/>
+      <circle class="eye-white" cx="40" cy="18" r="7"/>
+      <circle class="eye-blue" cx="30" cy="18" r="3"/>
+      <circle class="eye-blue" cx="44" cy="18" r="3"/>
+      <circle class="pupil" cx="30" cy="18" r="1.5"/>
+      <circle class="pupil" cx="44" cy="18" r="1.5"/>
+      <path class="sponge" d="M32 22 q4 -4 6 0" style="stroke-width:1"/>
+      <path class="outline" d="M26 28 q10 6 18 -2"/>
+      <rect class="tooth" x="32" y="30" width="3" height="3"/>
+      <rect class="tooth" x="36" y="29" width="3" height="3"/>
+    </g>
+    
+    <!-- 脸部: 战斗 -->
+    <g id="face-angry">
+      <circle class="eye-white" cx="26" cy="18" r="6"/>
+      <circle class="eye-white" cx="38" cy="18" r="6"/>
+      <circle class="eye-blue" cx="28" cy="18" r="2.5"/>
+      <circle class="eye-blue" cx="36" cy="18" r="2.5"/>
+      <circle class="pupil" cx="28" cy="18" r="1.2"/>
+      <circle class="pupil" cx="36" cy="18" r="1.2"/>
+      <!-- 眉毛 -->
+      <path class="outline" d="M22 10 l6 4 M42 10 l-6 4"/>
+      <path class="outline" d="M28 28 l8 -2 l8 2"/>
+      <rect class="tooth" x="30" y="28" width="4" height="3"/>
+    </g>
+
+  </defs>
+
+  <!-- Frame 0: Idle (参考左下角) -->
+  <g transform="translate(0, 0)">
+    <use href="#base-body"/>
+    <use href="#face-happy"/>
+    <!-- 腿 -->
+    <path class="limb" d="M22 52 v6"/>
+    <path class="limb" d="M42 52 v6"/>
+    <!-- 袜子 -->
+    <path class="sock" d="M20 56 h4 v4 h-4 z"/>
+    <path class="sock" d="M40 56 h4 v4 h-4 z"/>
+    <path d="M20 57 h4 M20 59 h4 M40 57 h4 M40 59 h4" stroke="#F00" stroke-width="0.5"/>
+    <!-- 鞋 -->
+    <path class="shoe" d="M18 60 h8 v4 h-8 z"/>
+    <path class="shoe" d="M38 60 h8 v4 h-8 z"/>
+    <!-- 手 (下垂) -->
+    <path class="limb" d="M10 30 l-4 10"/>
+    <path class="limb" d="M54 30 l4 10"/>
+    <circle class="limb" cx="6" cy="42" r="3"/>
+    <circle class="limb" cx="58" cy="42" r="3"/>
+  </g>
+
+  <!-- Frame 1: Run 1 (参考右上角) -->
+  <g transform="translate(64, 0)">
+    <g transform="rotate(5, 32, 32)">
+      <use href="#base-body"/>
+      <use href="#face-side"/>
+    </g>
+    <!-- 腿 (迈步) -->
+    <path class="limb" d="M28 50 l-8 8"/>
+    <path class="limb" d="M36 50 l8 8"/>
+    <path class="sock" d="M18 56 h4 v4 h-4 z" transform="rotate(45, 20, 58)"/>
+    <path class="sock" d="M42 56 h4 v4 h-4 z" transform="rotate(-45, 44, 58)"/>
+    <path class="shoe" d="M16 60 h8 v4 h-8 z" transform="rotate(45, 20, 62)"/>
+    <path class="shoe" d="M40 60 h8 v4 h-8 z" transform="rotate(-45, 44, 62)"/>
+    <!-- 手 (摆动) -->
+    <path class="limb" d="M12 32 l-8 -4"/>
+    <path class="limb" d="M52 32 l8 -4"/>
+    <circle class="limb" cx="4" cy="26" r="3"/>
+    <circle class="limb" cx="60" cy="26" r="3"/>
+  </g>
+
+  <!-- Frame 2: Run 2 (反向) -->
+  <g transform="translate(128, 0)">
+    <g transform="translate(0, -2) rotate(-5, 32, 32)">
+      <use href="#base-body"/>
+      <use href="#face-side"/>
+    </g>
+    <!-- 腿 (交换) -->
+    <path class="limb" d="M28 50 l8 8"/>
+    <path class="limb" d="M36 50 l-8 8"/>
+    <path class="sock" d="M34 56 h4 v4 h-4 z" transform="rotate(-45, 36, 58)"/>
+    <path class="sock" d="M26 56 h4 v4 h-4 z" transform="rotate(45, 28, 58)"/>
+    <path class="shoe" d="M32 60 h8 v4 h-8 z" transform="rotate(-45, 36, 62)"/>
+    <path class="shoe" d="M24 60 h8 v4 h-8 z" transform="rotate(45, 28, 62)"/>
+    <!-- 手 -->
+    <path class="limb" d="M12 32 l-6 8"/>
+    <path class="limb" d="M52 32 l6 8"/>
+    <circle class="limb" cx="6" cy="42" r="3"/>
+    <circle class="limb" cx="58" cy="42" r="3"/>
+  </g>
+
+  <!-- Frame 3: Jump (参考左上角) -->
+  <g transform="translate(192, 0)">
+    <g transform="translate(0, -8)">
+      <use href="#base-body"/>
+      <use href="#face-happy"/>
+      <!-- 腿 (弯曲) -->
+      <path class="limb" d="M24 52 q-4 4 0 8"/>
+      <path class="limb" d="M40 52 q4 4 0 8"/>
+      <path class="sock" d="M22 58 h4 v4 h-4 z"/>
+      <path class="sock" d="M38 58 h4 v4 h-4 z"/>
+      <path class="shoe" d="M20 62 h8 v4 h-8 z"/>
+      <path class="shoe" d="M36 62 h8 v4 h-8 z"/>
+      <!-- 手 (举起) -->
+      <path class="limb" d="M10 30 l-6 -8"/>
+      <path class="limb" d="M54 30 l6 -8"/>
+      <circle class="limb" cx="4" cy="20" r="3"/>
+      <circle class="limb" cx="60" cy="20" r="3"/>
+    </g>
+  </g>
+
+  <!-- Frame 4: Attack 1 (蓄力) -->
+  <g transform="translate(256, 0)">
+    <use href="#base-body"/>
+    <use href="#face-angry"/>
+    <!-- 红色拳套/衣服 -->
+    <path d="M48 28 l10 4 l-2 8 l-10 -4 z" fill="#F00" stroke="#000"/>
+    <circle cx="60" cy="36" r="5" fill="#F00" stroke="#000"/>
+    <!-- 腿 -->
+    <path class="limb" d="M22 52 v6"/>
+    <path class="limb" d="M42 52 l4 6"/>
+    <path class="shoe" d="M18 60 h8 v4 h-8 z"/>
+    <path class="shoe" d="M44 58 h8 v4 h-8 z" transform="rotate(-20)"/>
+  </g>
+
+  <!-- Frame 5: Attack 2 (出拳 - 参考右下角) -->
+  <g transform="translate(320, 0)">
+    <g transform="translate(4, 0)">
+      <use href="#base-body"/>
+      <use href="#face-angry"/>
+    </g>
+    <!-- 伸长的手臂 -->
+    <path d="M50 30 h14 v8 h-14 z" fill="#FFF" stroke="#000"/>
+    <rect x="64" y="30" width="4" height="8" fill="#CCC" stroke="#000"/> <!-- 护腕 -->
+    <circle cx="72" cy="34" r="6" fill="#F00" stroke="#000"/> <!-- 拳头 -->
+    <!-- 速度线 -->
+    <path d="M60 20 q10 -10 20 0" fill="none" stroke="#000" stroke-width="1"/>
+    <path d="M62 48 q10 10 20 0" fill="none" stroke="#000" stroke-width="1"/>
+    <!-- 腿 -->
+    <path class="limb" d="M26 52 l-4 6"/>
+    <path class="limb" d="M46 52 l8 6"/>
+    <path class="shoe" d="M18 60 h8 v4 h-8 z"/>
+    <path class="shoe" d="M52 60 h8 v4 h-8 z"/>
+  </g>
+
+</svg>

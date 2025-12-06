@@ -2,12 +2,14 @@ import Phaser from 'phaser';
 import { GameConfig } from './config';
 import { BootScene } from './scenes/BootScene';
 import { MenuScene } from './scenes/MenuScene';
+import { HubScene } from './scenes/HubScene';
 import { Level1Scene } from './scenes/Level1Scene';
 
 // 注册所有场景
 GameConfig.scene = [
   BootScene,
   MenuScene,
+  HubScene,
   Level1Scene
 ];
 

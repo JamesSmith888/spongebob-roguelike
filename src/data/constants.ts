@@ -6,9 +6,9 @@ export const CANVAS_HEIGHT = 600;
 export const GROUND_Y = 550;
 
 // 物理常量
-export const GRAVITY = 500;
+export const GRAVITY = 800;
 export const PLAYER_SPEED = 200;
-export const PLAYER_JUMP_FORCE = -350;
+export const PLAYER_JUMP_FORCE = -480;
 export const ENEMY_SPEED = 100;
 
 // 游戏平衡
